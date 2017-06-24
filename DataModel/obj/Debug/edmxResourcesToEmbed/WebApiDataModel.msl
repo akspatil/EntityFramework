@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="INSTITUTERECORDModelStoreContainer" CdmEntityContainer="INSTITUTERECORDEntities">
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="INSTITUTERECORDModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="PayId" ColumnName="PayId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="AmountToPay" ColumnName="AmountToPay" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="PendingAmount" ColumnName="PendingAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentDetails">
+      <EntityTypeMapping TypeName="INSTITUTERECORDModel.StudentDetail">
+        <MappingFragment StoreEntitySet="StudentDetails">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="EnrolledHours" ColumnName="EnrolledHours" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tokens">
+      <EntityTypeMapping TypeName="INSTITUTERECORDModel.Token">
+        <MappingFragment StoreEntitySet="Tokens">
+          <ScalarProperty Name="TokenId" ColumnName="TokenId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AuthToken" ColumnName="AuthToken" />
+          <ScalarProperty Name="IssuedOn" ColumnName="IssuedOn" />
+          <ScalarProperty Name="ExpiresOn" ColumnName="ExpiresOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="INSTITUTERECORDModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddNewStudentDetails" FunctionName="INSTITUTERECORDModel.Store.AddNewStudentDetails" />
+    <FunctionImportMapping FunctionImportName="AddPaymentDetails" FunctionName="INSTITUTERECORDModel.Store.AddPaymentDetails" />
+    <FunctionImportMapping FunctionImportName="GenerateToken" FunctionName="INSTITUTERECORDModel.Store.GenerateToken">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="INSTITUTERECORDModel.GenerateToken_Result">
+          <ScalarProperty Name="TokenId" ColumnName="TokenId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AuthToken" ColumnName="AuthToken" />
+          <ScalarProperty Name="IssuedOn" ColumnName="IssuedOn" />
+          <ScalarProperty Name="ExpiresOn" ColumnName="ExpiresOn" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDetails" FunctionName="INSTITUTERECORDModel.Store.GetStudentDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="INSTITUTERECORDModel.GetStudentDetails_Result">
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="EnrolledHours" ColumnName="EnrolledHours" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DeleteTokens" FunctionName="INSTITUTERECORDModel.Store.sp_DeleteTokens" />
+    <FunctionImportMapping FunctionImportName="sp_ValidateToken" FunctionName="INSTITUTERECORDModel.Store.sp_ValidateToken" />
+    <FunctionImportMapping FunctionImportName="ValidateUser" FunctionName="INSTITUTERECORDModel.Store.ValidateUser" />
+  </EntityContainerMapping>
+</Mapping>

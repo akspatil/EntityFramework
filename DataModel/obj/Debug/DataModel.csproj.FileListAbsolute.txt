@@ -1,0 +1,10 @@
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\bin\Debug\DataModel.dll.config
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\bin\Debug\DataModel.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\bin\Debug\DataModel.pdb
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\bin\Debug\EntityFramework.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\bin\Debug\EntityFramework.xml
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\obj\Debug\DataModel.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\DataModel\obj\Debug\DataModel.pdb

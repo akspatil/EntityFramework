@@ -1,0 +1,13 @@
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\BusinessServices.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\BusinessServices.pdb
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\AutoMapper.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\BusinessEntities.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\DataModel.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\EntityFramework.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\BusinessEntities.pdb
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\DataModel.pdb
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\AutoMapper.xml
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\bin\Debug\EntityFramework.xml
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\obj\Debug\BusinessServices.csprojResolveAssemblyReference.cache
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\obj\Debug\BusinessServices.dll
+C:\Users\acer\documents\visual studio 2015\Projects\WithEntity\BusinessServices\obj\Debug\BusinessServices.pdb

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="INSTITUTERECORDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PayId" />
+    </Key>
+    <Property Name="PayId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int64" />
+    <Property Name="AmountToPay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Paid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PendingAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StudentDetail" Relationship="Self.FK_StudentDetails_Payment" FromRole="Payment" ToRole="StudentDetails" />
+  </EntityType>
+  <EntityType Name="StudentDetail">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Suburb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EnrolledHours" Type="Int32" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_StudentDetails_Payment" FromRole="StudentDetails" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="TokenId" />
+    </Key>
+    <Property Name="TokenId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" />
+    <Property Name="AuthToken" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IssuedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiresOn" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Users_Tokens" FromRole="Tokens" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tokens" Relationship="Self.FK_Users_Tokens" FromRole="Users" ToRole="Tokens" />
+  </EntityType>
+  <Association Name="FK_StudentDetails_Payment">
+    <End Role="StudentDetails" Type="Self.StudentDetail" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentDetails">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Tokens">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Tokens" Type="Self.Token" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tokens">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="INSTITUTERECORDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="StudentDetails" EntityType="Self.StudentDetail" />
+    <EntitySet Name="Tokens" EntityType="Self.Token" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_StudentDetails_Payment" Association="Self.FK_StudentDetails_Payment">
+      <End Role="StudentDetails" EntitySet="StudentDetails" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Tokens" Association="Self.FK_Users_Tokens">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Tokens" EntitySet="Tokens" />
+    </AssociationSet>
+    <FunctionImport Name="AddNewStudentDetails" ReturnType="Collection(Int32)">
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Suburb" Mode="In" Type="String" />
+      <Parameter Name="Emailid" Mode="In" Type="String" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="EnrolledHours" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AddPaymentDetails" ReturnType="Collection(Int32)">
+      <Parameter Name="StudentId" Mode="In" Type="Int64" />
+      <Parameter Name="AmountToPay" Mode="In" Type="String" />
+      <Parameter Name="Paid" Mode="In" Type="String" />
+      <Parameter Name="PendingAmount" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GenerateToken" ReturnType="Collection(INSTITUTERECORDModel.GenerateToken_Result)">
+      <Parameter Name="AuthToken" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="IssuedOn" Mode="In" Type="DateTime" />
+      <Parameter Name="ExpiresOn" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDetails" ReturnType="Collection(INSTITUTERECORDModel.GetStudentDetails_Result)">
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DeleteTokens" ReturnType="Collection(Int32)">
+      <Parameter Name="TokenId" Mode="In" Type="Int64" />
+      <Parameter Name="UserId" Mode="In" Type="Int64" />
+      <Parameter Name="IdType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ValidateToken" ReturnType="Collection(Int64)">
+      <Parameter Name="TokenStr" Mode="In" Type="String" />
+      <Parameter Name="Expiryseconds" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ValidateUser" ReturnType="Collection(Int64)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GenerateToken_Result">
+    <Property Type="Int64" Name="TokenId" Nullable="false" />
+    <Property Type="Int64" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="AuthToken" Nullable="false" MaxLength="250" />
+    <Property Type="DateTime" Name="IssuedOn" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ExpiresOn" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDetails_Result">
+    <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Lastname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Suburb" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EmailId" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="EnrolledHours" Nullable="true" />
+  </ComplexType>
+</Schema>
